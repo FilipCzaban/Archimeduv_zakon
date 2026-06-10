@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archimédův zákon | Interaktivní průvodce vztlakovou silou</title>
+    <meta name="description" content="Objevte kouzlo fyziky! Interaktivní simulátor, kvízy a praktické příklady z běžného života vám srozumitelně vysvětlí Archimédův zákon.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigační menu -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <span>Archimédův <span class="highlight">zákon</span></span>
+            </a>
+            <nav class="nav-links">
+                <a href="#intro">Úvod</a>
+                <a href="#vzorec">Vzorec</a>
+                <a href="#simulator">Simulátor</a>
+                <a href="#priklady">Příklady</a>
+                <a href="#kviz">Kvíz</a>
+            </nav>
+            <button class="menu-toggle" aria-label="Otevřít menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero / Úvodní sekce -->
+        <section id="intro" class="hero-section">
+            <div class="hero-bg-glow"></div>
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="badge">Edukativní projekt</span>
+                    <h1>Archimédův zákon</h1>
+                    <p class="subtitle">„Těleso ponořené do kapaliny je nadlehčováno vztlakovou silou, jejíž velikost se rovná tíze kapaliny tělesem vytlačené.“</p>
+                    <p class="description">
+                        Příběh o legendárním objevu v lázni, kdy Archimédes s výkřikem <strong>„Heuréka!“</strong> vyběhl nahý do ulic Syrakus, zná snad každý. Proč ale obří ocelové lodě plavou na hladině, zatímco malý oblázek klesne ke dnu? Pojďme to společně prozkoumat pomocí našeho interaktivního simulátoru!
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#simulator" class="btn btn-primary">Vyzkoušet simulátor</a>
+                        <a href="#vzorec" class="btn btn-secondary">Prozkoumat vzorec</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="visual-card glass">
+                        <div class="water-container-preview">
+                            <div class="preview-water"></div>
+                            <div class="preview-crown">
+                                <!-- Zlatá koruna reprezentující Archimédův úkol -->
+                                <svg viewBox="0 0 64 64" class="crown-svg">
+                                    <path d="M10,48 L54,48 L58,24 L44,36 L32,16 L20,36 L6,24 Z" fill="gold" stroke="#b8860b" stroke-width="2"/>
+                                    <circle cx="6" cy="22" r="3" fill="#ff4500" />
+                                    <circle cx="20" cy="34" r="2" fill="#0000ff" />
+                                    <circle cx="32" cy="14" r="3" fill="#ff4500" />
+                                    <circle cx="44" cy="34" r="2" fill="#0000ff" />
+                                    <circle cx="58" cy="22" r="3" fill="#ff4500" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="preview-stats">
+                            <div class="stat-row"><span>Stav:</span> <strong class="text-teal">Ponořeno</strong></div>
+                            <div class="stat-row"><span>Vztlaková síla:</span> <strong class="text-blue">F<sub>vz</sub> &gt; F<sub>g</sub></strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vysvětlení vzorce -->
+        <section id="vzorec" class="formula-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Fyzikální vzorec</h2>
+                    <p>Jak přesně vztlakovou sílu spočítáme? Vše závisí na třech klíčových faktorech.</p>
+                </div>
+
+                <div class="formula-card glass">
+                    <!-- Velký interaktivní vzorec -->
+                    <div class="formula-display">
+                        <span class="var-main" data-var="fvz">F<sub>vz</sub></span>
+                        <span class="operator">=</span>
+                        <span class="var" data-var="rho">&rho;</span>
+                        <span class="operator">&middot;</span>
+                        <span class="var" data-var="v">V</span>
+                        <span class="operator">&middot;</span>
+                        <span class="var" data-var="g">g</span>
+                    </div>
+
+                    <!-- Popisky proměnných, které se zvýrazní při najetí -->
+                    <div class="formula-explanation-grid">
+                        <div class="explanation-item" id="exp-fvz">
+                            <h3>F<sub>vz</sub> <span class="unit">[ N ]</span></h3>
+                            <h4>Vztlaková síla</h4>
+                            <p>Síla, která nadlehčuje těleso v kapalině. Směřuje přímo vzhůru proti gravitační síle.</p>
+                        </div>
+                        <div class="explanation-item" id="exp-rho">
+                            <h3>&rho; <span class="unit">[ kg/m³ ]</span></h3>
+                            <h4>Hustota kapaliny</h4>
+                            <p>Čím hustší kapalina je (např. slaná voda vs. olej), tím větší vztlakovou sílu dokáže vyvinout.</p>
+                        </div>
+                        <div class="explanation-item" id="exp-v">
+                            <h3>V <span class="unit">[ m³ ]</span></h3>
+                            <h4>Objem ponořené části</h4>
+                            <p>POZOR! Počítá se pouze objem té části tělesa, která je skutečně pod hladinou kapaliny.</p>
+                        </div>
+                        <div class="explanation-item" id="exp-g">
+                            <h3>g <span class="unit">[ N/kg nebo m/s² ]</span></h3>
+                            <h4>Tíhové zrychlení</h4>
+                            <p>Konstanta udávající sílu gravitace. Na Zemi používáme hodnotu přibližně <strong>9.81 m/s²</strong> (ve škole se často zaokrouhluje na 10).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interaktivní kalkulačka vztlaku -->
+                <div class="calc-card glass">
+                    <h3>Rychlá kalkulačka vztlakové síly</h3>
+                    <div class="calc-grid">
+                        <div class="calc-inputs">
+                            <div class="input-group">
+                                <label for="calc-rho">Hustota kapaliny (&rho;): <span class="val" id="val-calc-rho">1000</span> kg/m³</label>
+                                <input type="range" id="calc-rho" min="600" max="15000" step="50" value="1000">
+                                <div class="preset-buttons">
+                                    <button class="btn-preset" data-val="920">Olej (920)</button>
+                                    <button class="btn-preset active" data-val="1000">Voda (1000)</button>
+                                    <button class="btn-preset" data-val="1025">Slaná v. (1025)</button>
+                                    <button class="btn-preset" data-val="13600">Rtuť (13600)</button>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label for="calc-v">Ponořený objem (V): <span class="val" id="val-calc-v">0.050</span> m³ (<span id="val-calc-v-liters">50</span> litrů)</label>
+                                <input type="range" id="calc-v" min="0.001" max="1" step="0.001" value="0.050">
+                            </div>
+                            <div class="input-group">
+                                <label for="calc-g">Tíhové zrychlení (g):</label>
+                                <select id="calc-g">
+                                    <option value="9.81" selected>Přesné (9.81 m/s²)</option>
+                                    <option value="10">Školní zaokrouhlené (10 m/s²)</option>
+                                    <option value="1.62">Měsíc (1.62 m/s²)</option>
+                                    <option value="24.79">Jupiter (24.79 m/s²)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="calc-result">
+                            <span class="result-title">Výsledná vztlaková síla</span>
+                            <div class="result-value"><span id="calc-result-fvz">490.5</span> <span class="result-unit">N</span></div>
+                            <div class="result-math">
+                                <code>F<sub>vz</sub> = <span id="math-rho">1000</span> &middot; <span id="math-v">0.050</span> &middot; <span id="math-g">9.81</span></code>
+                            </div>
+                            <div class="result-comparison">
+                                <p id="result-text">Tato síla by dokázala nadlehčit těleso o hmotnosti až <strong>50 kg</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hlavní interaktivní simulace -->
+        <section id="simulator" class="simulator-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Interaktivní simulátor vztlaku</h2>
+                    <p>Měňte parametry tělesa i kapaliny a sledujte v reálném čase, jak se mění síly a chování tělesa.</p>
+                </div>
+
+                <div class="simulator-layout">
+                    <!-- Ovládací panel -->
+                    <div class="control-panel glass">
+                        <h3>Nastavení simulace</h3>
+                        
+                        <!-- Výběr kapaliny -->
+                        <div class="sim-control-group">
+                            <div class="group-header">
+                                <label for="sim-rho-liq">1. Hustota kapaliny (&rho;<sub>kap</sub>)</label>
+                                <span class="value-display"><strong id="val-sim-rho-liq">1000</strong> kg/m³</span>
+                            </div>
+                            <input type="range" id="sim-rho-liq" min="600" max="2500" step="50" value="1000">
+                            <div class="preset-chips">
+                                <button class="chip-preset active" data-val="1000">Voda (1000)</button>
+                                <button class="chip-preset" data-val="920">Olej (920)</button>
+                                <button class="chip-preset" data-val="1025">Slaná v. (1025)</button>
+                                <button class="chip-preset" data-val="1260">Glycerin (1260)</button>
+                            </div>
+                        </div>
+
+                        <!-- Parametry tělesa -->
+                        <div class="sim-control-group">
+                            <div class="group-header">
+                                <label for="sim-rho-obj">2. Hustota tělesa (&rho;<sub>těl</sub>)</label>
+                                <span class="value-display"><strong id="val-sim-rho-obj">800</strong> kg/m³</span>
+                            </div>
+                            <input type="range" id="sim-rho-obj" min="100" max="3000" step="50" value="800">
+                            <div class="preset-chips">
+                                <button class="chip-preset-obj" data-val="240">Korek (240)</button>
+                                <button class="chip-preset-obj active" data-val="800">Dřevo (800)</button>
+                                <button class="chip-preset-obj" data-val="920">Led (920)</button>
+                                <button class="chip-preset-obj" data-val="2700">Hliník (2700)</button>
+                            </div>
+                        </div>
+
+                        <div class="sim-control-group">
+                            <div class="group-header">
+                                <label for="sim-vol-obj">3. Objem tělesa (V)</label>
+                                <span class="value-display"><strong id="val-sim-vol-obj">100</strong> dm³ (l)</span>
+                            </div>
+                            <input type="range" id="sim-vol-obj" min="10" max="300" step="5" value="100">
+                        </div>
+
+                        <!-- Výpis sil pod ovládacím panelem -->
+                        <div class="forces-card">
+                            <div class="force-row">
+                                <div class="force-label">
+                                    <span class="color-dot force-g-dot"></span>
+                                    <span>Gravitační síla (F<sub>g</sub>):</span>
+                                </div>
+                                <span class="force-value"><strong id="sim-fg-val">784.8</strong> N</span>
+                            </div>
+                            <div class="force-row">
+                                <div class="force-label">
+                                    <span class="color-dot force-vz-dot"></span>
+                                    <span>Vztlaková síla (F<sub>vz</sub>):</span>
+                                </div>
+                                <span class="force-value"><strong id="sim-fvz-val">784.8</strong> N</span>
+                            </div>
+                            <div class="force-divider"></div>
+                            <div class="force-row total-force">
+                                <div class="force-label">Výsledná síla (F<sub>výsl</sub>):</div>
+                                <span class="force-value"><strong id="sim-fres-val">0.0</strong> N</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grafický vizualizátor (Akvárium) -->
+                    <div class="aquarium-panel glass">
+                        <div class="aquarium-header">
+                            <span class="status-badge" id="aquarium-status">Těleso plave</span>
+                            <span class="submerged-badge" id="aquarium-submerged">Ponořeno: 80%</span>
+                        </div>
+                        
+                        <!-- Hlavní prostor akvária -->
+                        <div class="aquarium-tank" id="aquarium-tank">
+                            <!-- Indikátor dna (písek) -->
+                            <div class="tank-bottom"></div>
+                            
+                            <!-- Vodní hladina a voda -->
+                            <div class="water-body" id="water-body">
+                                <div class="water-surface">
+                                    <svg viewBox="0 0 120 28" class="water-wave">
+                                        <defs>
+                                            <filter id="wave-glow">
+                                                <feGaussianBlur stdDeviation="1" result="blur"/>
+                                                <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                                            </filter>
+                                        </defs>
+                                        <path d="M0 15 Q 30 0, 60 15 T 120 15 L 120 28 L 0 28 Z" fill="rgba(0, 180, 216, 0.45)"/>
+                                        <path d="M0 15 Q 30 30, 60 15 T 120 15 L 120 28 L 0 28 Z" fill="rgba(0, 119, 182, 0.6)"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <!-- Plovoucí objekt -->
+                            <div class="floating-object" id="floating-object">
+                                <span class="object-label" id="object-label">Dřevo</span>
+                                <span class="object-mass" id="object-mass">80 kg</span>
+                                
+                                <!-- Šipky sil přímo na objektu -->
+                                <div class="arrow-container">
+                                    <!-- Gravitační síla (dolů) -->
+                                    <div class="sim-arrow arrow-gravity" id="arrow-gravity">
+                                        <div class="arrow-line"></div>
+                                        <div class="arrow-head"></div>
+                                        <span class="arrow-label">F<sub>g</sub></span>
+                                    </div>
+                                    <!-- Vztlaková síla (nahoru) -->
+                                    <div class="sim-arrow arrow-buoyant" id="arrow-buoyant">
+                                        <span class="arrow-label">F<sub>vz</sub></span>
+                                        <div class="arrow-head"></div>
+                                        <div class="arrow-line"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Edukativní rozbor stavu simulace -->
+                        <div class="simulation-analysis">
+                            <h4>Fyzikální analýza stavu:</h4>
+                            <p id="analysis-text">Hustota tělesa (800 kg/m³) je <strong>menší</strong> než hustota kapaliny (1000 kg/m³). Vztlaková síla vyrovnává tíhovou sílu. Těleso plave na hladině a je ponořeno přesně z 80 % svého objemu.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Praktické příklady -->
+        <section id="priklady" class="examples-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Praktické příklady ze života</h2>
+                    <p>Jak se Archimédův zákon projevuje v reálném světě kolem nás?</p>
+                </div>
+
+                <div class="examples-grid">
+                    <!-- Příklad 1: Zaoceánské lodě -->
+                    <div class="example-card glass">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21h20M19.3 14.8C21.1 13.5 22 11.7 22 9c0-3.5-3-6-6-6a5.9 5.9 0 0 0-4.8 2.5A6 6 0 0 0 4 9c0 2.7.9 4.5 2.7 5.8L12 19l7.3-4.2z"/></svg>
+                        </div>
+                        <h3>Proč plují ocelové lodě?</h3>
+                        <p>Ocel má mnohem větší hustotu než voda (cca 7800 kg/m³). Loď přesto pluje, protože není plná oceli. Uvnitř lodi je spousta vzduchu. Celková (průměrná) hustota lodi jako celku je proto mnohem menší než hustota vody.</p>
+                        <div class="card-highlight">Průměrná hustota lodi &lt; hustota vody</div>
+                    </div>
+
+                    <!-- Příklad 2: Ledovce -->
+                    <div class="example-card glass">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 22h20L12 2z"/></svg>
+                        </div>
+                        <h3>Špička ledovce</h3>
+                        <p>Led má hustotu přibližně 917 kg/m³, zatímco mořská voda asi 1025 kg/m³. Poměr hustot způsobuje, že přibližně 90 % objemu ledovce se skrývá pod hladinou moře a nad hladinu vyčnívá pouze zbývajících 10 %.</p>
+                        <div class="card-highlight">Ponořeno je přibližně 89.5 % ledovce</div>
+                    </div>
+
+                    <!-- Příklad 3: Ponorky -->
+                    <div class="example-card glass">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M20 12a8 8 0 1 0-16 0h16z"/></svg>
+                        </div>
+                        <h3>Jak se ponoří ponorka?</h3>
+                        <p>Ponorka má speciální nádrže (tzv. balastní). Pokud chce klesnout pod hladinu, napustí do nich vodu, čímž zvýší svou průměrnou hustotu. Když chce opět vyplout, vyfoukne vodu z nádrží stlačeným vzduchem.</p>
+                        <div class="card-highlight">Změna hustoty napouštěním vody</div>
+                    </div>
+
+                    <!-- Příklad 4: Horkovzdušné balóny -->
+                    <div class="example-card glass">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a7 7 0 0 0-7 7c0 4.2 3.5 7.8 7 10.5 3.5-2.7 7-6.3 7-10.5A7 7 0 0 0 12 2z"/>
+                                <path d="M9 19v3h6v-3H9z"/>
+                                <path d="M9 9a3 3 0 0 0 6 0"/>
+                            </svg>
+                        </div>
+                        <h3>Archimédes ve vzduchu</h3>
+                        <p>Archimédův zákon platí nejen pro kapaliny, ale i pro plyny. Horký vzduch uvnitř balónu má nižší hustotu než okolní studený vzduch. Vztlaková síla vzduchu pak celý balón vynese vzhůru.</p>
+                        <div class="card-highlight">Platí i pro plyny (atmosféra)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mini kvíz -->
+        <section id="kviz" class="quiz-section">
+            <div class="container">
+                <div class="quiz-container glass">
+                    <div class="quiz-header">
+                        <h2>Vyzkoušej své znalosti!</h2>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" id="quiz-progress" style="width: 0%;"></div>
+                        </div>
+                        <span class="quiz-steps" id="quiz-steps-counter">Otázka 1 z 5</span>
+                    </div>
+
+                    <!-- Prostor pro dynamické otázky -->
+                    <div class="quiz-body" id="quiz-body">
+                        <div class="quiz-question" id="quiz-question-text">Zde se zobrazí otázka kvízu.</div>
+                        <div class="quiz-options" id="quiz-options-container">
+                            <!-- Možnosti odpovědí se načtou z JS -->
+                        </div>
+                    </div>
+
+                    <!-- Patička kvízu s ovládáním a vysvětlením -->
+                    <div class="quiz-footer">
+                        <div class="quiz-explanation-box hidden" id="quiz-explanation-box">
+                            <span class="status-indicator" id="quiz-feedback-status">Správně!</span>
+                            <p id="quiz-explanation-text">Zde bude vysvětlující text.</p>
+                        </div>
+                        <button class="btn btn-primary hidden" id="quiz-next-btn">Další otázka</button>
+                    </div>
+
+                    <!-- Výsledná obrazovka (skrytá na začátku) -->
+                    <div class="quiz-results hidden" id="quiz-results">
+                        <div class="results-visual">
+                            <div class="score-circle">
+                                <span class="score-number" id="quiz-final-score">0/5</span>
+                            </div>
+                        </div>
+                        <h3>Skvělý pokus!</h3>
+                        <p id="quiz-final-message">Zde se zobrazí zhodnocení podle vašeho výsledku.</p>
+                        <button class="btn btn-primary" id="quiz-restart-btn">Spustit znovu</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Patička webu -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Interaktivní fyzika. Vytvořeno pro vzdělávací účely.</p>
+            <p class="footer-quote">„Dejte mi pevný bod ve vesmíru a pohnu celou Zemí.“ — <em>Archimédes</em></p>
+        </div>
+    </footer>
+
+    <!-- JS Logic -->
+    <script src="script.js"></script>
+</body>
+</html>

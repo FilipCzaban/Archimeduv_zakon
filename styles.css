@@ -1,0 +1,1401 @@
+/* CSS NÁVRHOVÝ SYSTÉM PRO ARCHIMÉDŮV ZÁKON */
+
+:root {
+    /* Barevná paleta */
+    --color-bg-main: #060d1a;
+    --color-bg-card: rgba(13, 27, 42, 0.65);
+    --color-bg-section: #091324;
+    --color-border: rgba(100, 255, 218, 0.1);
+    --color-border-glow: rgba(100, 255, 218, 0.25);
+    
+    /* Zářivé neonové barvy */
+    --color-primary: #00f0ff;      /* Světle modrá / Aqua */
+    --color-accent: #64ffda;       /* Tyrkysová / Teal */
+    --color-water: #0077b6;        /* Voda */
+    --color-water-light: #00b4d8;  /* Světlá voda */
+    --color-gravity: #ff4d6d;      /* Gravitace / Červená */
+    
+    /* Textové barvy */
+    --color-text-primary: #e2e8f0;
+    --color-text-secondary: #94a3b8;
+    --color-text-white: #ffffff;
+    
+    /* Typografie */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Stíny a efekty */
+    --shadow-main: 0 10px 30px rgba(0, 0, 0, 0.5);
+    --glass-blur: blur(12px);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* GLOBÁLNÍ STYLY */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--color-bg-main);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-text-white);
+    font-weight: 700;
+}
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* SPOLEČNÉ ELEMENTY A BADGES */
+.badge {
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--color-accent);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid var(--color-border);
+    display: inline-block;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.highlight {
+    color: var(--color-primary);
+}
+
+.text-teal {
+    color: var(--color-accent);
+}
+
+.text-blue {
+    color: var(--color-primary);
+}
+
+/* Glassmorphic karty */
+.glass {
+    background: var(--color-bg-card);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-main);
+    transition: var(--transition);
+}
+
+.glass:hover {
+    border-color: rgba(100, 255, 218, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 240, 255, 0.05);
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: #060d1a;
+    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 240, 255, 0.5);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-left: 12px;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-text-primary);
+    transform: translateY(-2px);
+}
+
+/* SKRYTÉ TŘÍDY */
+.hidden {
+    display: none !important;
+}
+
+/* HEADER A NAVIGACE */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(6, 13, 26, 0.8);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+    transition: var(--transition);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-text-white);
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 5px var(--color-primary));
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 6px 0;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--color-accent);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: var(--color-text-white);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+/* HERO SEKCE */
+.hero-section {
+    padding: 160px 0 100px 0;
+    position: relative;
+    background: radial-gradient(circle at 10% 20%, rgba(9, 30, 62, 0.4) 0%, rgba(6, 13, 26, 0.9) 80%);
+}
+
+.hero-bg-glow {
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    background: linear-gradient(120deg, var(--color-text-white) 40%, var(--color-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content .subtitle {
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin-bottom: 24px;
+    line-height: 1.4;
+    border-left: 3px solid var(--color-accent);
+    padding-left: 16px;
+    font-style: italic;
+}
+
+.hero-content .description {
+    color: var(--color-text-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 40px;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+}
+
+/* Preview element v hero sekci */
+.hero-visual {
+    display: flex;
+    justify-content: center;
+}
+
+.visual-card {
+    padding: 24px;
+    width: 100%;
+    max-width: 340px;
+    border-color: var(--color-border-glow);
+}
+
+.water-container-preview {
+    height: 200px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    border: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.preview-water {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(180deg, var(--color-water-light) 0%, var(--color-water) 100%);
+    opacity: 0.6;
+    animation: previewWave 4s ease-in-out infinite alternate;
+}
+
+@keyframes previewWave {
+    0% { transform: skewY(-2deg); }
+    100% { transform: skewY(2deg); }
+}
+
+.preview-crown {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: floatCrown 3s ease-in-out infinite alternate;
+}
+
+@keyframes floatCrown {
+    0% { transform: translate(-50%, 0); }
+    100% { transform: translate(-50%, -10px); }
+}
+
+.crown-svg {
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+}
+
+.preview-stats {
+    margin-top: 20px;
+    border-top: 1px solid var(--color-border);
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+/* SPOLEČNÝ SYSTÉM SEKCE */
+section {
+    padding: 100px 0;
+    background-color: var(--color-bg-section);
+    position: relative;
+}
+
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px auto;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-header h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--color-accent);
+    border-radius: 2px;
+}
+
+.section-header p {
+    color: var(--color-text-secondary);
+    font-size: 1.1rem;
+}
+
+/* SEKCE VZOREC */
+.formula-section {
+    background-color: var(--color-bg-main);
+}
+
+.formula-card {
+    padding: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.formula-display {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--color-text-white);
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.formula-display span {
+    transition: var(--transition);
+    cursor: pointer;
+    user-select: none;
+    padding: 0 10px;
+    border-radius: 8px;
+}
+
+.formula-display .var:hover {
+    color: var(--color-accent);
+    background: rgba(100, 255, 218, 0.08);
+    transform: scale(1.1);
+}
+
+.formula-display .var-main:hover {
+    color: var(--color-primary);
+    background: rgba(0, 240, 255, 0.08);
+    transform: scale(1.1);
+}
+
+.formula-explanation-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.explanation-item {
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition: var(--transition);
+}
+
+.explanation-item.active-var {
+    background: rgba(100, 255, 218, 0.04);
+    border-color: rgba(100, 255, 218, 0.3);
+    transform: translateY(-4px);
+}
+
+.explanation-item.active-main-var {
+    background: rgba(0, 240, 255, 0.04);
+    border-color: rgba(0, 240, 255, 0.3);
+    transform: translateY(-4px);
+}
+
+.explanation-item h3 {
+    font-size: 1.8rem;
+    color: var(--color-accent);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.explanation-item h3 .unit {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
+    font-weight: 400;
+}
+
+.explanation-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.explanation-item p {
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Rychlá kalkulačka vztlaku */
+.calc-card {
+    padding: 32px;
+}
+
+.calc-card h3 {
+    margin-bottom: 24px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.calc-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.calc-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-weight: 500;
+    color: var(--color-text-primary);
+    font-size: 0.95rem;
+}
+
+.input-group label .val {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+/* Custom posuvník */
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    outline: none;
+    transition: var(--transition);
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    transition: var(--transition);
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.preset-buttons,
+.preset-chips,
+.preset-chips-obj {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.btn-preset,
+.chip-preset,
+.chip-preset-obj {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-text-secondary);
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-preset:hover,
+.chip-preset:hover,
+.chip-preset-obj:hover {
+    background: rgba(100, 255, 218, 0.08);
+    color: var(--color-accent);
+    border-color: rgba(100, 255, 218, 0.3);
+}
+
+.btn-preset.active,
+.chip-preset.active,
+.chip-preset-obj.active {
+    background: rgba(0, 240, 255, 0.15);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    font-weight: 600;
+}
+
+select {
+    background: rgba(13, 27, 42, 0.8);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-white);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Výsledek kalkulačky */
+.calc-result {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    min-height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.result-title {
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.result-value {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    text-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+    margin-bottom: 12px;
+}
+
+.result-unit {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.result-math {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+}
+
+.result-math code {
+    color: var(--color-accent);
+}
+
+.result-comparison {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+/* SEKCE SIMULÁTOR */
+.simulator-layout {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 40px;
+    align-items: stretch;
+}
+
+.control-panel {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.control-panel h3 {
+    margin-bottom: 8px;
+    font-size: 1.4rem;
+}
+
+.sim-control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sim-control-group .group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sim-control-group .group-header label {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.sim-control-group .value-display {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+.sim-control-group .value-display strong {
+    color: var(--color-primary);
+    font-size: 1rem;
+}
+
+/* Karta se silami */
+.forces-card {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: 8px;
+}
+
+.force-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+}
+
+.force-row:last-child {
+    margin-bottom: 0;
+}
+
+.force-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-secondary);
+}
+
+.color-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.force-g-dot {
+    background-color: var(--color-gravity);
+    box-shadow: 0 0 6px var(--color-gravity);
+}
+
+.force-vz-dot {
+    background-color: var(--color-primary);
+    box-shadow: 0 0 6px var(--color-primary);
+}
+
+.force-value {
+    color: var(--color-text-white);
+}
+
+.force-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 12px 0;
+}
+
+.total-force {
+    font-weight: 700;
+}
+
+.total-force .force-label {
+    color: var(--color-text-white);
+}
+
+.total-force .force-value {
+    color: var(--color-accent);
+}
+
+/* Grafický Akvárium Panel */
+.aquarium-panel {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.aquarium-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.status-badge {
+    background: rgba(0, 240, 255, 0.1);
+    color: var(--color-primary);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.submerged-badge {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-text-secondary);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+}
+
+/* Akvárium a chování objektu */
+.aquarium-tank {
+    flex-grow: 1;
+    min-height: 380px;
+    background: linear-gradient(180deg, rgba(6, 13, 26, 0.4) 0%, rgba(6, 13, 26, 0.7) 100%);
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Vodní těleso */
+.water-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%; /* Měníme dynamicky v JS pokud by bylo třeba */
+    background: linear-gradient(180deg, rgba(0, 180, 216, 0.35) 0%, rgba(0, 119, 182, 0.65) 100%);
+    transition: height 0.5s ease;
+    z-index: 1;
+}
+
+.water-surface {
+    position: absolute;
+    top: -24px;
+    left: 0;
+    width: 100%;
+    height: 26px;
+    z-index: 2;
+    overflow: visible;
+}
+
+.water-wave {
+    width: 200%;
+    height: 100%;
+    animation: waveMotion 6s linear infinite;
+    transform: translate3d(0, 0, 0);
+}
+
+@keyframes waveMotion {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.tank-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(0deg, #1e1b18 0%, #3e322d 100%);
+    border-top: 1px solid #4a3e3d;
+    z-index: 5;
+}
+
+/* Plovoucí kostka */
+.floating-object {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #d4a373 0%, #a3704c 100%);
+    border: 2px solid #5c3d24;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    left: calc(50% - 50px);
+    /* translateY se bude měnit dynamicky v JS */
+    bottom: 50%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: bottom 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                width 0.4s ease, height 0.4s ease,
+                left 0.4s ease, background 0.5s ease, border-color 0.5s ease;
+    user-select: none;
+}
+
+.floating-object.sinking {
+    background: linear-gradient(135deg, #a8a29e 0%, #78716c 100%);
+    border-color: #44403c;
+}
+
+.floating-object.helium {
+    background: linear-gradient(135deg, #fed7aa 0%, #f97316 100%);
+    border-color: #ea580c;
+}
+
+.object-label {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+}
+
+.object-mass {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+    pointer-events: none;
+}
+
+/* Silové šipky na kostce */
+.arrow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.sim-arrow {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30px;
+    transition: height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.sim-arrow .arrow-line {
+    width: 5px;
+    background-color: white;
+    border-radius: 3px;
+    transition: height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.sim-arrow .arrow-head {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+}
+
+.sim-arrow .arrow-label {
+    font-size: 0.8rem;
+    font-weight: 800;
+    background-color: rgba(6, 13, 26, 0.9);
+    padding: 2px 6px;
+    border-radius: 4px;
+    pointer-events: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    white-space: nowrap;
+}
+
+/* Šipka dolů (Gravitace) - Vpravo od kostky */
+.arrow-gravity {
+    top: 50%;
+    left: calc(100% + 15px);
+    transform-origin: top center;
+}
+
+.arrow-gravity .arrow-line {
+    background-color: var(--color-gravity);
+    box-shadow: 0 0 8px rgba(255, 77, 109, 0.6);
+}
+
+.arrow-gravity .arrow-head {
+    border-top: 10px solid var(--color-gravity);
+    border-bottom: none;
+}
+
+.arrow-gravity .arrow-label {
+    color: var(--color-gravity);
+    margin-top: 6px;
+    border: 1px solid rgba(255, 77, 109, 0.2);
+}
+
+/* Šipka nahoru (Vztlak) - Vlevo od kostky */
+.arrow-buoyant {
+    bottom: 50%;
+    right: calc(100% + 15px);
+    transform-origin: bottom center;
+}
+
+.arrow-buoyant .arrow-line {
+    background-color: var(--color-primary);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+}
+
+.arrow-buoyant .arrow-head {
+    border-bottom: 10px solid var(--color-primary);
+    border-top: none;
+}
+
+.arrow-buoyant .arrow-label {
+    color: var(--color-primary);
+    margin-bottom: 6px;
+    border: 1px solid rgba(0, 240, 255, 0.2);
+}
+
+/* Edukativní rozbor */
+.simulation-analysis {
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    padding: 16px;
+    border-left: 4px solid var(--color-accent);
+}
+
+.simulation-analysis h4 {
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    color: var(--color-accent);
+}
+
+.simulation-analysis p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+/* SEKCE PRAKTICKÉ PŘÍKLADY */
+.examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.example-card {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(100, 255, 218, 0.1);
+    color: var(--color-accent);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.example-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.example-card p {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.card-highlight {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 2px solid var(--color-primary);
+    padding: 6px 12px;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* MINI KVÍZ */
+.quiz-section {
+    background-color: var(--color-bg-main);
+}
+
+.quiz-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.quiz-header {
+    margin-bottom: 32px;
+}
+
+.quiz-header h2 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.progress-bar-container {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    transition: width 0.4s ease;
+}
+
+.quiz-steps {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.quiz-body {
+    margin-bottom: 32px;
+}
+
+.quiz-question {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--color-text-white);
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.option-btn {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 16px 20px;
+    color: var(--color-text-primary);
+    text-align: left;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.option-btn:hover {
+    background: rgba(100, 255, 218, 0.04);
+    border-color: rgba(100, 255, 218, 0.3);
+}
+
+.option-btn.selected {
+    background: rgba(0, 240, 255, 0.05);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.option-btn.correct {
+    background: rgba(100, 255, 218, 0.15) !important;
+    border-color: var(--color-accent) !important;
+    color: var(--color-accent) !important;
+    font-weight: 600;
+}
+
+.option-btn.wrong {
+    background: rgba(255, 77, 109, 0.15) !important;
+    border-color: var(--color-gravity) !important;
+    color: var(--color-gravity) !important;
+}
+
+.quiz-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.quiz-explanation-box {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 16px;
+    border-left: 4px solid var(--color-primary);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.status-indicator {
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.quiz-explanation-box.correct-box {
+    border-left-color: var(--color-accent);
+}
+
+.quiz-explanation-box.correct-box .status-indicator {
+    color: var(--color-accent);
+}
+
+.quiz-explanation-box.wrong-box {
+    border-left-color: var(--color-gravity);
+}
+
+.quiz-explanation-box.wrong-box .status-indicator {
+    color: var(--color-gravity);
+}
+
+.quiz-explanation-box p {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+}
+
+/* Výsledky kvízu */
+.quiz-results {
+    text-align: center;
+    padding: 20px 0;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.results-visual {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+}
+
+.score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, rgba(100, 255, 218, 0.05) 100%);
+    border: 4px solid var(--color-accent);
+    box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.score-number {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-accent);
+}
+
+.quiz-results h3 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+.quiz-results p {
+    color: var(--color-text-secondary);
+    margin-bottom: 32px;
+    max-width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* PATIČKA WEBU */
+.main-footer {
+    background-color: #040912;
+    padding: 40px 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-quote {
+    font-size: 0.85rem;
+    font-style: italic;
+    border-left: 2px solid rgba(255,255,255,0.1);
+    padding-left: 12px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+    html {
+        font-size: 15px;
+    }
+    
+    .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+    
+    .hero-content .subtitle {
+        border-left: none;
+        border-bottom: 2px solid var(--color-accent);
+        padding-left: 0;
+        padding-bottom: 12px;
+    }
+    
+    .hero-actions {
+        justify-content: center;
+    }
+    
+    .calc-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .simulator-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .aquarium-panel {
+        min-height: 480px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+    
+    .nav-links {
+        position: absolute;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: #060d1a;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 40px;
+        gap: 24px;
+        transition: var(--transition);
+        border-top: 1px solid var(--color-border);
+    }
+    
+    .nav-links.active {
+        left: 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    
+    .formula-display {
+        font-size: 2.5rem;
+    }
+    
+    .quiz-container {
+        padding: 24px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-quote {
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,0.1);
+        padding-left: 0;
+        padding-top: 12px;
+    }
+}
